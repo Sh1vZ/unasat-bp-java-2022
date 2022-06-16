@@ -1,9 +1,10 @@
 # jdbcCRUD
-jdbc Crud example application
+jdbc Crud with scanner
 
-#SQL Script
-De sql script is geplaats in de resource folder.
-De sql script bevat de schema & insert statements.
+# SQL Script
+SQL script is located in the rescources folder.
 
-#Opdracht
-Maak het project af conform de beroepsproduct opdracht van blok 2.1.
+# Connection
+Connection file is located in **src/main/java/sr/unasat/jdbc/crud/services/ConnectionInstance.java**
+Change the username and password to the ones you have.
+
