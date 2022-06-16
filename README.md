@@ -1,5 +1,5 @@
 # jdbcCRUD
-jdbc Crud with scanner
+jdbc Crud with the scanner class
 
 # SQL Script
 SQL script is located in the rescources folder.
