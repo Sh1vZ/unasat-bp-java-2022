@@ -83,7 +83,7 @@ public class LandRepository {
         String sql = "DELETE FROM land WHERE id = ?";
         stmt = connection.prepareStatement(sql);
         stmt.setInt(1, land.getId());
-        String msg = stmt.executeUpdate() == 1 ? "Deleted: " + land.getNaam() : "Country not deleted";
+        String msg = stmt.executeUpdate() == 1 ? "\nDeleted: " + land.getNaam() : "\nCountry not deleted\n";
         System.out.println(msg);
     }
 

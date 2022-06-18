@@ -62,9 +62,9 @@ public class PersoonBedrijfRepository {
         stmt.setString(3, obj.getPositie());
         if (stmt.executeUpdate() == 1) {
             BedrijfPositie bedrijfPositie = new BedrijfPositie(obj.getBedrijf(), obj.getPositie());
-            msg = "Succesvol ingevoerd";
+            msg = "\nSuccesvol ingevoerd\n";
         } else {
-            msg = "Niet ingevoerd";
+            msg = "\nNiet ingevoerd\n";
         }
         System.out.println(msg);
     }
@@ -77,9 +77,9 @@ public class PersoonBedrijfRepository {
         stmt.setString(3, obj.getPositie());
         if (stmt.executeUpdate() == 1) {
             BedrijfPositie bedrijfPositie = new BedrijfPositie(obj.getBedrijf(), obj.getPositie());
-            msg = "Deleted";
+            msg = "\nDeleted\n";
         } else {
-            msg = "Not Deleted";
+            msg = "\nNot Deleted\n";
         }
         System.out.println(msg);
     }
@@ -92,9 +92,9 @@ public class PersoonBedrijfRepository {
         stmt.setString(3, obj.getPositie());
         stmt.setInt(4, obj.getId());
         if (stmt.executeUpdate() == 1) {
-            msg = "Updated";
+            msg = "\nUpdated\n";
         } else {
-            msg = "Not updated";
+            msg = "\nNot updated\n";
         }
         System.out.println(msg);
     }

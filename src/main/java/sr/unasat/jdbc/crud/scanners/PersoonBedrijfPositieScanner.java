@@ -99,16 +99,11 @@ public class PersoonBedrijfPositieScanner extends BaseScanner {
         if (obj == null) {
             System.out.println("\nRecord with given info not found");
             return;
+        }
 
-        }
-        Object[] infoNew = promptIfo("new value");
-        if (infoNew[0] == null || infoNew[1] == null || infoNew[2] == "") {
-            System.out.println("\nInfo is not correct");
-            return;
-        }
-        obj.setBedrijf((Bedrijf) infoNew[1]);
-        obj.setPositie((String) infoNew[2]);
-        obj.setPersoon((Persoon) infoNew[0]);
+        System.out.println("\nType in person's new position\n");
+        String positie = scanner.nextLine();
+        obj.setPositie(positie);
         bedrijfPersRepo.updateOne(obj);
     }
 
