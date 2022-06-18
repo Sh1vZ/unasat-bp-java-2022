@@ -9,7 +9,6 @@ protected  String entity;
 private final String[] validOptions = { "1", "2", "3", "4", "5", "q" };
     protected void runOptions(){
         this.isRunning=true;
-        String option = null;
         Scanner scanner = new Scanner(System.in);
         while (isRunning){
             System.out.println("\nSelected: "+entity);
