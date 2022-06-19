@@ -13,9 +13,12 @@ public class Application {
     public static void main(String[] args) throws SQLException {
         boolean isRunning = true;
         Scanner scanner = new Scanner(System.in);
+        System.out.println("---ADRES BOEK---");
+        System.out.println("Authors:");
+        System.out.println("Bhagwandas Shivam\nFraser Jeremiah\nKemble Chananja\nLynch Shavonne\nMentopawiro Kaidy\n");
         while (isRunning) {
             System.out.println("Select number 1-5");
-            System.out.println("\nSelect the entity to mutate\n1 Person\n2 Country\n3 Company\n4 Contact information\n5 Person Company\nq Quit");
+            System.out.println("Select the entity to mutate\n1 Person\n2 Country\n3 Company\n4 Contact information\n5 Person Company\nq Quit");
             String option = scanner.nextLine();
             switch (option) {
                 case "1":
