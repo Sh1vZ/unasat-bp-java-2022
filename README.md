@@ -3,7 +3,7 @@ jdbc Crud with the scanner class.
 
 ---
 
-##### Assignment 📝
+### Assignment 📝
 We have created another class called **'Bedrijf'** within the java project and the SQL database.
 We then created a many to many relationship between **'Persoon'** and **'Bedrijf'** in the table 
 **'persoon_bedrijf'**.A java class **'PersoonBedrijfPositie'** is also created to mimic the table in the databse.
