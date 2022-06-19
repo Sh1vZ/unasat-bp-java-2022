@@ -12,7 +12,11 @@ import java.util.List;
 
 public class LandRepository {
     private final Connection connection;
+    /*
 
+    get connections instance from static connection class
+
+    */
     public LandRepository() {
         connection = ConnectionInstance.getInstance();
     }

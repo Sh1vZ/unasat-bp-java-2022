@@ -13,7 +13,11 @@ import java.util.List;
 public class PersoonBedrijfRepository {
     private final Connection connection;
     String msg;
+    /*
 
+    get connections instance from static connection class
+
+    */
     public PersoonBedrijfRepository() {
         connection = ConnectionInstance.getInstance();
     }

@@ -11,7 +11,14 @@ import java.util.Scanner;
 
 public class LandScanner extends BaseScanner {
     private LandRepository landrepo;
-    Scanner scanner;
+    private Scanner scanner;
+
+    /*
+        initialises the needed reposotories
+        and executes the runoptions methods to prompt the user
+        executeOption to execute the option that the user has chosen
+    */
+
     public LandScanner() throws SQLException {
         this.scanner = new Scanner(System.in);
         this.landrepo = new LandRepository();
@@ -21,8 +28,11 @@ public class LandScanner extends BaseScanner {
     }
 
 
+    /*
+       switches between the option and executes the correct method for the given option
+    */
 
-    public void executeOption() throws SQLException {
+    private void executeOption() throws SQLException {
         switch (option){
             case "1":
                 insertLand();
@@ -48,6 +58,10 @@ public class LandScanner extends BaseScanner {
             executeOption();
         }
     }
+
+    /*
+        all these methods prompts the user to type in info
+    */
 
     private void insertLand() throws SQLException {
         System.out.println("Type in country name");

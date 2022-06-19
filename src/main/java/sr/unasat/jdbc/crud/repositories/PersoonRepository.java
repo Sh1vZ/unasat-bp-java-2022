@@ -10,7 +10,11 @@ import java.util.List;
 
 public class PersoonRepository {
     private final Connection connection;
+    /*
 
+    get connections instance from static connection class
+
+    */
     public PersoonRepository() {
         connection = ConnectionInstance.getInstance();
     }
@@ -67,7 +71,6 @@ public class PersoonRepository {
         String sql = "DELETE FROM persoon WHERE persoon.id = ?";
         stmt = connection.prepareStatement(sql);
         stmt.setInt(1, persoon.getId());
-        result = stmt.executeUpdate();
         String msg = stmt.executeUpdate() == 1 ? "Deleted: " + persoon.getNaam() : "Person not deleted";
         System.out.println(msg);
     }

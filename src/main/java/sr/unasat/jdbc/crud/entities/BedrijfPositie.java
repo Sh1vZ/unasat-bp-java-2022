@@ -1,7 +1,11 @@
 package sr.unasat.jdbc.crud.entities;
 
 import java.util.Objects;
+/*
 
+this entity is created to store in the list of companies with position in a list within the persoon class
+
+*/
 public class BedrijfPositie {
     private Bedrijf bedrijf;
     private String positie;

@@ -1,4 +1,5 @@
 package sr.unasat.jdbc.crud.scanners;
+
 import sr.unasat.jdbc.crud.entities.ContactInformatie;
 import sr.unasat.jdbc.crud.entities.Land;
 import sr.unasat.jdbc.crud.entities.Persoon;
@@ -15,20 +16,27 @@ public class ContactInformatieScanner extends BaseScanner {
     private LandRepository landRepository;
     private PersoonRepository persRepo;
     private ContactInformatieRepository contRepo;
+
+    /*
+        initialises the needed reposotories
+        and executes the runoptions methods to prompt the user
+        executeOption to execute the option that the user has chosen
+    */
     public ContactInformatieScanner() throws SQLException {
         this.scanner = new Scanner(System.in);
         this.landRepository = new LandRepository();
         this.persRepo = new PersoonRepository();
         this.contRepo = new ContactInformatieRepository();
-        entity="Contact Information";
+        entity = "Contact Information";
         runOptions();
         executeOption();
     }
 
-
-
-    public void executeOption() throws SQLException {
-        switch (option){
+    /*
+       switches between the option and executes the correct method for the given option
+    */
+    private void executeOption() throws SQLException {
+        switch (option) {
             case "1":
                 insertContact();
                 break;
@@ -48,62 +56,66 @@ public class ContactInformatieScanner extends BaseScanner {
                 stopOptions();
                 break;
         }
-        if(!option.equals("q")){
+        if (!option.equals("q")) {
             runOptions();
             executeOption();
         }
     }
 
+    /*
+        all these methods prompts the user to type in info
+    */
+
     private void insertContact() throws SQLException {
         System.out.println("Type in name of the person");
-        String naam=scanner.nextLine();
-        if(isEmpty(naam)) return;
-        Persoon persoon=persRepo.findOne(naam);
-        if(persoon==null){
+        String naam = scanner.nextLine();
+        if (isEmpty(naam)) return;
+        Persoon persoon = persRepo.findOne(naam);
+        if (persoon == null) {
             System.out.println("Person not found");
         }
         System.out.println("Type in adress of the person");
-        String adress=scanner.nextLine();
-        if(isEmpty(adress)) return;
+        String adress = scanner.nextLine();
+        if (isEmpty(adress)) return;
         System.out.println("Type in phone number of the person");
-        String phone=scanner.nextLine();
-        if(isEmpty(phone)) return;
+        String phone = scanner.nextLine();
+        if (isEmpty(phone)) return;
         System.out.println("Type in country of the person");
-        String country=scanner.nextLine();
-        if(isEmpty(country)) return;
+        String country = scanner.nextLine();
+        if (isEmpty(country)) return;
 
-        Land land=landRepository.findOne(country);
-        if(land==null){
+        Land land = landRepository.findOne(country);
+        if (land == null) {
             System.out.println("Country not found");
         }
 
-        ContactInformatie info=new ContactInformatie(adress,phone,persoon,land);
+        ContactInformatie info = new ContactInformatie(adress, phone, persoon, land);
         contRepo.insertOne(info);
     }
 
     private void updateContact() throws SQLException {
         System.out.println("Type in phone number");
-        String phone=scanner.nextLine();
-        if(isEmpty(phone)) return;
+        String phone = scanner.nextLine();
+        if (isEmpty(phone)) return;
         System.out.println("Type in adress");
-        String adress=scanner.nextLine();
-        if(isEmpty(adress)) return;
-        ContactInformatie cont=contRepo.findOneRecord(phone,adress);
-        if(cont==null){
+        String adress = scanner.nextLine();
+        if (isEmpty(adress)) return;
+        ContactInformatie cont = contRepo.findOneRecord(phone, adress);
+        if (cont == null) {
             System.out.println("Information not found");
             return;
         }
         System.out.println("Type in new phone number");
-        String newPhone=scanner.nextLine();
-        if(isEmpty(newPhone)) return;
+        String newPhone = scanner.nextLine();
+        if (isEmpty(newPhone)) return;
         System.out.println("Type in new adress");
-        String newAdress=scanner.nextLine();
-        if(isEmpty(newAdress)) return;
+        String newAdress = scanner.nextLine();
+        if (isEmpty(newAdress)) return;
         System.out.println("Type in new country");
-        String newLand=scanner.nextLine();
-        if(isEmpty(newLand)) return;
+        String newLand = scanner.nextLine();
+        if (isEmpty(newLand)) return;
         Land land = landRepository.findOne(newLand);
-        if(land==null){
+        if (land == null) {
             System.out.println("Country not found");
             return;
         }
@@ -112,31 +124,32 @@ public class ContactInformatieScanner extends BaseScanner {
         cont.setLand(land);
         contRepo.updateOneRecord(cont);
     }
+
     private void deleteContact() throws SQLException {
         System.out.println("Type in phone number to be deleted");
-        String phone=scanner.nextLine();
-        if(isEmpty(phone)) return;
+        String phone = scanner.nextLine();
+        if (isEmpty(phone)) return;
         System.out.println("Type in adress to be deleted");
-        String adress=scanner.nextLine();
-        if(isEmpty(adress)) return;
-        ContactInformatie cont=contRepo.findOneRecord(phone,adress);
+        String adress = scanner.nextLine();
+        if (isEmpty(adress)) return;
+        ContactInformatie cont = contRepo.findOneRecord(phone, adress);
         contRepo.deleteOne(cont);
 
     }
 
     private void findAll() throws SQLException {
-        List<ContactInformatie> recs=contRepo.findAllRecords();
+        List<ContactInformatie> recs = contRepo.findAllRecords();
         System.out.println(recs);
     }
 
     private void findOne() throws SQLException {
         System.out.println("Type in phone number to be searched");
-        String phone=scanner.nextLine();
-        if(isEmpty(phone)) return;
+        String phone = scanner.nextLine();
+        if (isEmpty(phone)) return;
         System.out.println("Type in adress to be searched");
-        String adress=scanner.nextLine();
-        if(isEmpty(adress)) return;
-        ContactInformatie cont=contRepo.findOneRecord(phone,adress);
+        String adress = scanner.nextLine();
+        if (isEmpty(adress)) return;
+        ContactInformatie cont = contRepo.findOneRecord(phone, adress);
         System.out.println(cont);
     }
 

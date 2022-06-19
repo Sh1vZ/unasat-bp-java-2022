@@ -13,6 +13,12 @@ public class BedrijfScanner extends BaseScanner {
     private Scanner scanner;
     private BedrijfRepository bedrijfrepo;
     private LandRepository landRepository;
+
+    /*
+        initialises the needed reposotories
+        and executes the runoptions methods to prompt the user
+        executeOption to execute the option that the user has chosen
+    */
     public BedrijfScanner() throws SQLException {
         this.scanner = new Scanner(System.in);
         this.bedrijfrepo = new BedrijfRepository();
@@ -22,9 +28,12 @@ public class BedrijfScanner extends BaseScanner {
         executeOption();
     }
 
+    /*
+       switches between the option and executes the correct method for the given option
+    */
 
 
-    public void executeOption() throws SQLException {
+    private void executeOption() throws SQLException {
         switch (option){
             case "1":
                 insertBedrijf();
@@ -50,6 +59,10 @@ public class BedrijfScanner extends BaseScanner {
             executeOption();
         }
     }
+
+    /*
+        all these methods prompts the user to type in info
+    */
 
     private void insertBedrijf() throws SQLException {
         System.out.println("Type in company name");

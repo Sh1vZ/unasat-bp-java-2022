@@ -14,6 +14,11 @@ import java.util.List;
 public class BedrijfRepository {
     private final Connection connection;
 
+    /*
+
+    get connections instance from static connection class
+
+    */
     public BedrijfRepository() {
         this.connection = ConnectionInstance.getInstance();
     }
@@ -29,7 +34,7 @@ public class BedrijfRepository {
         stmt.setString(1, bedrijf.getNaam());
         stmt.setString(2, bedrijf.getAdres());
         stmt.setInt(3, land.getId());
-        if (stmt.executeUpdate()==1) {
+        if (stmt.executeUpdate() == 1) {
             System.out.println("\nCompany inserted\n");
         } else {
             System.out.println("\nCompany not inserted\n");
@@ -47,7 +52,7 @@ public class BedrijfRepository {
         stmt.setString(1, bedrijf.getNaam());
         stmt.setString(2, bedrijf.getAdres());
         stmt.setInt(3, bedrijf.getLand().getId());
-        if (stmt.executeUpdate()==1) {
+        if (stmt.executeUpdate() == 1) {
             System.out.println("\nCompany inserted\n");
         } else {
             System.out.println("\nCompany not inserted\n");
@@ -94,6 +99,7 @@ public class BedrijfRepository {
         res.close();
         return bedrijf;
     }
+
     public Bedrijf findOne(int idnr) throws SQLException {
         String sql = "SELECT bedrijf.id bedrijf_id,bedrijf.adres bedrijf_adres,bedrijf.naam bedrijf_naam,land.id land_id,land.naam land_naam"
                 + " FROM bedrijf join land on land_id=land.id"
@@ -117,47 +123,48 @@ public class BedrijfRepository {
     }
 
     public void deleteOne(String naam) throws SQLException {
-        Bedrijf find=findOne(naam);
-        if(find==null){
-            System.out.printf("\nBedrijf %s niet gevonden in het systeem\n",naam);
+        Bedrijf find = findOne(naam);
+        if (find == null) {
+            System.out.printf("\nBedrijf %s niet gevonden in het systeem\n", naam);
             return;
         }
-        String sql="DELETE FROM bedrijf WHERE id = ?";
-        PreparedStatement stmt=connection.prepareStatement(sql);
-        stmt.setInt(1,find.getId());
-        if(stmt.executeUpdate()==1){
-            System.out.printf("\n%s deleted\n",find.getNaam());
-        }else{
-            System.out.printf("\n%s not deleted\n",find.getNaam());
-        }
-    }
-    public void deleteOne(Bedrijf bedrijf) throws SQLException {
-        String sql="DELETE FROM bedrijf WHERE id = ?";
-        PreparedStatement stmt=connection.prepareStatement(sql);
-        stmt.setInt(1,bedrijf.getId());
-        if(stmt.executeUpdate()==1){
-            System.out.printf("\n%s deleted\n",bedrijf.getNaam());
-        }else{
-            System.out.printf("\n%s not deleted\n",bedrijf.getNaam());
+        String sql = "DELETE FROM bedrijf WHERE id = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, find.getId());
+        if (stmt.executeUpdate() == 1) {
+            System.out.printf("\n%s deleted\n", find.getNaam());
+        } else {
+            System.out.printf("\n%s not deleted\n", find.getNaam());
         }
     }
 
-    public void updateOne(Bedrijf bedrijf) throws  SQLException{
+    public void deleteOne(Bedrijf bedrijf) throws SQLException {
+        String sql = "DELETE FROM bedrijf WHERE id = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, bedrijf.getId());
+        if (stmt.executeUpdate() == 1) {
+            System.out.printf("\n%s deleted\n", bedrijf.getNaam());
+        } else {
+            System.out.printf("\n%s not deleted\n", bedrijf.getNaam());
+        }
+    }
+
+    public void updateOne(Bedrijf bedrijf) throws SQLException {
         Bedrijf find = findOne(bedrijf.getNaam());
         if (find != null) {
             System.out.printf("\nBedrijf %s already exists\n", bedrijf.getNaam());
             return;
         }
 
-        String sql= "UPDATE bedrijf SET naam=?,adres=?,land_id=? WHERE id=?";
-        PreparedStatement stmt=connection.prepareStatement(sql);
-        stmt.setString(1,bedrijf.getNaam());
-        stmt.setString(2,bedrijf.getAdres());
-        stmt.setInt(3,bedrijf.getLand().getId());
-        stmt.setInt(4,bedrijf.getId());
-        if(stmt.executeUpdate()==1){
+        String sql = "UPDATE bedrijf SET naam=?,adres=?,land_id=? WHERE id=?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, bedrijf.getNaam());
+        stmt.setString(2, bedrijf.getAdres());
+        stmt.setInt(3, bedrijf.getLand().getId());
+        stmt.setInt(4, bedrijf.getId());
+        if (stmt.executeUpdate() == 1) {
             System.out.println("\nCompany updated\n");
-        }else{
+        } else {
             System.out.println("\nCompany updated\n");
         }
 

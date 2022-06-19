@@ -11,7 +11,11 @@ import java.util.List;
 
 public class ContactInformatieRepository {
     private final Connection connection;
+    /*
 
+    get connections instance from static connection class
+
+    */
     public ContactInformatieRepository() {
         connection = ConnectionInstance.getInstance();
     }

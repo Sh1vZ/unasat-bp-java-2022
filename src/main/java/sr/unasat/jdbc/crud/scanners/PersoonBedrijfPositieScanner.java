@@ -16,7 +16,13 @@ public class PersoonBedrijfPositieScanner extends BaseScanner {
     private PersoonRepository persoonRepo;
     private BedrijfRepository bedrijfRepo;
     private PersoonBedrijfRepository bedrijfPersRepo;
-    Scanner scanner;
+   private Scanner scanner;
+
+    /*
+        initialises the needed reposotories
+        and executes the runoptions methods to prompt the user
+        executeOption to execute the option that the user has chosen
+    */
 
     public PersoonBedrijfPositieScanner() throws SQLException {
         this.scanner = new Scanner(System.in);
@@ -28,8 +34,11 @@ public class PersoonBedrijfPositieScanner extends BaseScanner {
         executeOption();
     }
 
+    /*
+       switches between the option and executes the correct method for the given option
+    */
 
-    public void executeOption() throws SQLException {
+    private void executeOption() throws SQLException {
         switch (option) {
             case "1":
                 insertPersoonBedrijf();
@@ -55,6 +64,9 @@ public class PersoonBedrijfPositieScanner extends BaseScanner {
             executeOption();
         }
     }
+    /*
+        all these methods prompts the user to type in info
+    */
 
     private Object[] promptIfo(String type) throws SQLException {
         Object[] arr = new Object[3];
