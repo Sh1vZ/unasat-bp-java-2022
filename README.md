@@ -15,8 +15,7 @@ We have written all the CRUD operations for these 2 entities.
 SQL script is located in the `rescources` folder.
 
 ---
-
-# Connection
+# Connection 
 Connection file is located in `src/main/java/sr/unasat/jdbc/crud/services/ConnectionInstance.java`
 Change the username and password to the ones you have.
 ---
