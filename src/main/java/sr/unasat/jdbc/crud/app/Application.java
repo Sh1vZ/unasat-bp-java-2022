@@ -17,6 +17,7 @@ public class Application {
         System.out.println("Authors:");
         System.out.println("Bhagwandas Shivam\nFraser Jeremiah\nKemble Chananja\nLynch Shavonne\nMentopawiro Kaidy\n");
         while (isRunning) {
+            System.out.println("Select an option");
             System.out.println("Select number 1-5");
             System.out.println("Select the entity to mutate\n1 Person\n2 Country\n3 Company\n4 Contact information\n5 Person Company\nq Quit");
             String option = scanner.nextLine();
